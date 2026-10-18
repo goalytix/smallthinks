@@ -8,17 +8,17 @@ const TOTAL_BOXES = 120; // 12 rows x 10 columns
 // (every pair has a contrast of at least 4.5 : 1)
 const COLORS = [
   { background: "#d62828", text: "#ffffff" }, // red
-  { background: "#ff924c", text: "#3d2f27" }, // orange
-  { background: "#ffca3a", text: "#3d2f27" }, // yellow
-  { background: "#c5ca30", text: "#3d2f27" }, // lime
-  { background: "#8ac926", text: "#3d2f27" }, // green
-  { background: "#36b37e", text: "#3d2f27" }, // teal
+  { background: "#ff924c", text: "#1d2b4f" }, // orange
+  { background: "#ffca3a", text: "#1d2b4f" }, // yellow
+  { background: "#c5ca30", text: "#1d2b4f" }, // lime
+  { background: "#8ac926", text: "#1d2b4f" }, // green
+  { background: "#36b37e", text: "#1d2b4f" }, // teal
   { background: "#2e7d4f", text: "#ffffff" }, // leaf
   { background: "#1673b0", text: "#ffffff" }, // blue
-  { background: "#4cc9f0", text: "#3d2f27" }, // sky
+  { background: "#4cc9f0", text: "#1d2b4f" }, // sky
   { background: "#6a4c93", text: "#ffffff" }, // purple
   { background: "#b5179e", text: "#ffffff" }, // magenta
-  { background: "#ff8fab", text: "#3d2f27" }, // pink
+  { background: "#ff8fab", text: "#1d2b4f" }, // pink
 ];
 
 const board = document.getElementById("board");

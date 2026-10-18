@@ -15,9 +15,9 @@ const SHOW_TIME = 600;              // how long (ms) a match shows before fading
 //   (︎ asks the device to draw it as a plain symbol, not an emoji)
 const COLORS = [
   { name: "red",    background: "#d62828", text: "#ffffff", shape: "♥︎" }, // ♥
-  { name: "orange", background: "#ff924c", text: "#3d2f27", shape: "▲︎" }, // ▲
-  { name: "yellow", background: "#ffca3a", text: "#3d2f27", shape: "★︎" }, // ★
-  { name: "green",  background: "#8ac926", text: "#3d2f27", shape: "■︎" }, // ■
+  { name: "orange", background: "#ff924c", text: "#1d2b4f", shape: "▲︎" }, // ▲
+  { name: "yellow", background: "#ffca3a", text: "#1d2b4f", shape: "★︎" }, // ★
+  { name: "green",  background: "#8ac926", text: "#1d2b4f", shape: "■︎" }, // ■
   { name: "blue",   background: "#1673b0", text: "#ffffff", shape: "●︎" }, // ●
   { name: "purple", background: "#6a4c93", text: "#ffffff", shape: "◆︎" }, // ◆
 ];

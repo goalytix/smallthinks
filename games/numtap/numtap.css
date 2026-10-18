@@ -18,7 +18,7 @@
   gap: clamp(4px, 1.2vw, 10px);
   padding: clamp(8px, 2vw, 16px);
   border-radius: var(--radius);
-  background: var(--line);
+  background: var(--sky-deep);
 }
 
 .box {
@@ -26,7 +26,7 @@
   border: none;
   border-radius: clamp(6px, 1.5vw, 12px);
   background: var(--white);
-  box-shadow: 0 3px 0 rgba(61, 47, 39, 0.12);
+  box-shadow: 0 3px 0 rgba(29, 43, 79, 0.12);
   color: var(--ink);
   font-family: inherit;
   font-size: clamp(0.8rem, 2.6vw, 1.3rem);
@@ -47,13 +47,14 @@
 
 /* Little bounce when a box gets a new color */
 .box.pop {
-  animation: pop 0.3s ease-out;
+  animation: pop 0.45s ease-out;
 }
 
 @keyframes pop {
-  0%   { transform: scale(0.8); }
-  60%  { transform: scale(1.12); }
-  100% { transform: scale(1); }
+  0%   { transform: scale(0.6) rotate(-10deg); }
+  50%  { transform: scale(1.25) rotate(6deg); }
+  75%  { transform: scale(0.95) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0); }
 }
 
 /* On small phones: tighter spacing so each box is as big as possible */
