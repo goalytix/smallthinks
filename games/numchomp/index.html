@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>numchomp · smallthinks</title>
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="stylesheet" href="numchomp.css">
+</head>
+<body data-game="numchomp">
+  <main>
+    <h1>numchomp 🐶</h1>
+    <p class="subtitle">Give the dog just the right number of donuts!</p>
+
+    <!-- How big the numbers get -->
+    <div class="levels" role="group" aria-label="How big are the numbers?">
+      <button class="level-button" data-max="5">🍩 Up to 5</button>
+      <button class="level-button" data-max="10">🍩🍩 Up to 10</button>
+      <button class="level-button" data-max="20">🍩🍩🍩 Up to 20</button>
+    </div>
+
+    <!-- 10 stars: one for each dog fed -->
+    <div id="stars" class="stars" aria-label="Stars"></div>
+
+    <div class="stage">
+      <!-- The dog and what it wants -->
+      <div class="dog-side">
+        <div id="bubble" class="bubble" aria-live="polite"></div>
+        <div id="dog" class="dog" aria-hidden="true">🐶</div>
+      </div>
+
+      <!-- The plate of donuts. Tap a donut to take it back. -->
+      <div class="plate-side">
+        <div id="plate" class="plate"></div>
+        <p class="hint">Tap a donut to take it back · Tap the dog to hear it again</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="add-button" class="big-button add-button">🍩 Add a donut</button>
+      <button id="feed-button" class="big-button feed-button">😋 Feed me!</button>
+    </div>
+
+    <!-- "Yum! 5 + 3 = 8" and other messages -->
+    <p id="message" class="message" aria-live="polite"></p>
+
+    <!-- Shown after 10 stars -->
+    <div id="win" class="win" hidden>
+      <div class="win-card">
+        <div class="win-emoji">🎉</div>
+        <h2>You did it!</h2>
+        <p>The dog is so full and happy!</p>
+        <button id="play-again" class="big-button">Play again</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../shared/sound.js"></script>
+  <script src="../../shared/confetti.js"></script>
+  <script src="../../shared/nav.js"></script>
+  <script src="numchomp.js"></script>
+</body>
+</html>

@@ -162,6 +162,23 @@ h1 {
   100% { transform: translateY(0) scale(1); }
 }
 
+/* On small phones the tabs show only their emoji, so every game fits */
+@media (max-width: 560px) {
+  .tab-name {
+    display: none;
+  }
+
+  .tab {
+    padding: 6px 10px;
+    font-size: 1.3rem;
+  }
+
+  .tab.active .tab-name {
+    display: inline;
+    font-size: 1rem;
+  }
+}
+
 /* Hover effects only on devices with a mouse.
    (On touch screens they get "stuck" after a tap.) */
 @media (hover: hover) {

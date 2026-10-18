@@ -7,6 +7,7 @@
 const GAMES = [
   { id: "numtap", name: "numtap", emoji: "🔢", about: "Tap the numbers, make colors!" },
   { id: "numfade", name: "numfade", emoji: "💨", about: "Put same colors side by side. Whoosh!" },
+  { id: "numchomp", name: "numchomp", emoji: "🐶", about: "Feed the dog just the right number of donuts!" },
 ];
 
 // Find the site's main folder from where this file lives (shared/nav.js).
@@ -34,7 +35,8 @@ function buildTopBar() {
     const tab = document.createElement("a");
     tab.className = "tab";
     tab.href = new URL("games/" + game.id + "/index.html", SITE_ROOT);
-    tab.textContent = game.emoji + " " + game.name;
+    tab.innerHTML = game.emoji + ' <span class="tab-name">' + game.name + "</span>";
+    tab.setAttribute("aria-label", game.name);
     if (game.id === currentGame) {
       tab.classList.add("active");
       tab.setAttribute("aria-current", "page");

@@ -1,0 +1,337 @@
+/* =========================================
+   numchomp - styles for this game only
+   ========================================= */
+
+/* ---------- Level buttons ---------- */
+.levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.level-button {
+  flex: 1;
+  min-height: 48px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: var(--corner);
+  background: var(--white);
+  box-shadow: 0 4px 0 var(--sky-deep);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.25s var(--bounce);
+}
+
+.level-button:active {
+  transform: translateY(3px) scale(0.96);
+}
+
+.level-button.chosen {
+  background: var(--accent);
+  box-shadow: 0 4px 0 var(--accent-dark);
+}
+
+/* ---------- Stars ---------- */
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 12px;
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  line-height: 1;
+}
+
+.star {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.star.earned {
+  opacity: 1;
+  filter: none;
+  animation: star-pop 0.6s var(--bounce);
+}
+
+@keyframes star-pop {
+  0%   { transform: scale(0) rotate(-90deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+/* ---------- The dog and the plate ---------- */
+.stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.dog-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer; /* tap to hear the question again */
+}
+
+.bubble {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 8px 14px;
+  border-radius: var(--corner);
+  background: var(--sky);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* The little point under the speech bubble */
+.bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border: 10px solid transparent;
+  border-top-color: var(--sky);
+  border-bottom: 0;
+}
+
+/* The number the dog wants is big and bold */
+.bubble strong {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.bubble.pop {
+  animation: bubble-pop 0.45s var(--bounce);
+}
+
+@keyframes bubble-pop {
+  0%   { transform: scale(0.5); }
+  100% { transform: scale(1); }
+}
+
+.dog {
+  display: inline-block;
+  font-size: clamp(4rem, 14vw, 6rem);
+  line-height: 1;
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  50% { transform: scale(1.06) translateY(-4px); }
+}
+
+/* Eating: big chomps */
+.dog.munch {
+  animation: munch 0.6s ease-in-out 2;
+}
+
+@keyframes munch {
+  0%, 100% { transform: scale(1) rotate(0); }
+  25%      { transform: scale(1.25, 0.85) rotate(-6deg); }
+  50%      { transform: scale(0.9, 1.15); }
+  75%      { transform: scale(1.2, 0.9) rotate(6deg); }
+}
+
+/* Too many donuts: burp and wobble */
+.dog.burp {
+  animation: burp 0.6s ease-in-out;
+}
+
+@keyframes burp {
+  0%, 100% { transform: rotate(0); }
+  20%      { transform: rotate(-14deg) scale(1.15); }
+  40%      { transform: rotate(12deg); }
+  60%      { transform: rotate(-8deg); }
+  80%      { transform: rotate(5deg); }
+}
+
+/* Not enough donuts: a hopeful little hop */
+.dog.hungry {
+  animation: hungry 0.5s ease-in-out 2;
+}
+
+@keyframes hungry {
+  50% { transform: translateY(-14px); }
+}
+
+/* The plate: rows of 5, so counting is easier */
+.plate {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  min-height: 140px;
+  padding: 14px;
+  border: 3px dashed var(--sky-deep);
+  border-radius: 50px;
+  background: var(--sky);
+  align-content: center;
+}
+
+.donut {
+  position: relative;
+  aspect-ratio: 1;
+  max-width: 56px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  font-size: clamp(1.6rem, 6vw, 2.6rem); /* the 🍩 emoji */
+  line-height: 1;
+  cursor: pointer;
+  animation: donut-in 0.4s var(--bounce);
+}
+
+/* Donuts the kid added sit on a yellow circle, so "5 + 3" is easy to see */
+.donut.added {
+  border-color: var(--accent-dark);
+  background: var(--accent);
+}
+
+@keyframes donut-in {
+  0%   { transform: translateY(-30px) scale(0.3); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Taking a donut back: it flies away */
+.donut.leaving {
+  animation: donut-out 0.3s ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes donut-out {
+  to { transform: translateY(-40px) rotate(90deg) scale(0); opacity: 0; }
+}
+
+/* Eaten: the donuts shrink away one after another */
+.donut.eaten {
+  animation: eaten 0.35s ease-in forwards;
+}
+
+@keyframes eaten {
+  to { transform: scale(0) rotate(-180deg); opacity: 0; }
+}
+
+.hint {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* ---------- Buttons and message ---------- */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.actions .big-button {
+  flex: 1;
+  min-height: 60px;
+  font-size: 1.25rem;
+}
+
+.add-button {
+  background: var(--white);
+  box-shadow: 0 5px 0 var(--sky-deep);
+}
+
+.add-button:active {
+  box-shadow: 0 1px 0 var(--sky-deep);
+}
+
+.big-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.message {
+  min-height: 2.6rem;
+  margin: 12px 0 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.message.pop {
+  animation: bubble-pop 0.45s var(--bounce);
+}
+
+/* ---------- "You did it!" ---------- */
+.win {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(166, 216, 255, 0.85);
+}
+
+.win[hidden] {
+  display: none;
+}
+
+.win-card {
+  padding: 24px 28px;
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow);
+  text-align: center;
+  animation: bubble-pop 0.45s var(--bounce);
+}
+
+.win-emoji {
+  display: inline-block;
+  font-size: 4rem;
+  line-height: 1;
+  animation: party 0.8s ease-in-out infinite;
+}
+
+@keyframes party {
+  0%, 100% { transform: rotate(-12deg) scale(1); }
+  50%      { transform: rotate(12deg) scale(1.15); }
+}
+
+.win-card h2 {
+  margin: 6px 0 2px;
+  font-size: 1.7rem;
+}
+
+.win-card p {
+  margin: 0 0 16px;
+  color: var(--ink-soft);
+  font-size: 1.2rem;
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 560px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 12px;
+  }
+
+  .plate {
+    gap: 6px;
+    padding: 10px;
+    border-radius: 28px;
+  }
+
+  .actions .big-button {
+    font-size: 1.1rem;
+    padding: 8px 10px;
+  }
+}
