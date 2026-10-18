@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>numfade · smallthinks</title>
+  <link rel="stylesheet" href="../../shared/style.css">
+  <link rel="stylesheet" href="numfade.css">
+</head>
+<body data-game="numfade">
+  <main>
+    <div class="numfade-header">
+      <div>
+        <h1>numfade 💨</h1>
+        <p class="subtitle">Put a color next to the same color. Whoosh!</p>
+      </div>
+      <button id="reset-button" class="big-button">🔄 Reset</button>
+    </div>
+
+    <!-- The color your next tap will get, and the score -->
+    <div class="status">
+      <div class="next">
+        <span>Next</span>
+        <div id="next-color" class="swatch" role="img" aria-label="Next color"></div>
+      </div>
+      <p class="counter">Faded: <strong id="faded-count">0</strong></p>
+    </div>
+
+    <p class="rotate-tip">📱 Turn your phone sideways for bigger boxes!</p>
+
+    <div class="board-wrap">
+      <!-- numfade.js fills this with 120 number boxes -->
+      <div id="board" class="board"></div>
+
+      <!-- Shown when there are no white boxes left -->
+      <div id="win" class="win" hidden>
+        <div class="win-card">
+          <div class="win-emoji">🎉</div>
+          <h2>You did it!</h2>
+          <p>You faded <strong id="win-count">0</strong> boxes.</p>
+          <button id="play-again" class="big-button">Play again</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../shared/sound.js"></script>
+  <script src="../../shared/confetti.js"></script>
+  <script src="../../shared/hold.js"></script>
+  <script src="../../shared/nav.js"></script>
+  <script src="numfade.js"></script>
+</body>
+</html>

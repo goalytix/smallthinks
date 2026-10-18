@@ -1,0 +1,65 @@
+/* =========================================
+   numtap - styles for this game only
+   ========================================= */
+
+.numtap-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+/* 10 columns x 12 rows of boxes */
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: clamp(4px, 1.2vw, 10px);
+  padding: clamp(8px, 2vw, 16px);
+  border-radius: var(--radius);
+  background: var(--line);
+}
+
+.box {
+  aspect-ratio: 1; /* keep every box square */
+  border: none;
+  border-radius: clamp(6px, 1.5vw, 12px);
+  background: var(--white);
+  box-shadow: 0 3px 0 rgba(61, 47, 39, 0.12);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: clamp(0.8rem, 2.6vw, 1.3rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+@media (hover: hover) {
+  .box:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.box:active {
+  transform: scale(0.9);
+}
+
+/* Little bounce when a box gets a new color */
+.box.pop {
+  animation: pop 0.3s ease-out;
+}
+
+@keyframes pop {
+  0%   { transform: scale(0.8); }
+  60%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* On small phones: tighter spacing so each box is as big as possible */
+@media (max-width: 500px) {
+  .board {
+    gap: 3px;
+    padding: 4px;
+  }
+}

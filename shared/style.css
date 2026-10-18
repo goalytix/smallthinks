@@ -1,0 +1,309 @@
+/* =========================================================
+   smallthinks - shared styles used by every page and game
+   ========================================================= */
+
+/* ---------- 0. Our font, saved in this project ----------
+   Baloo 2 (free, SIL Open Font License - see fonts/OFL-LICENSE.txt).
+   Keeping it here means no visitor data goes to a font service. */
+@font-face {
+  font-family: "Baloo 2";
+  src: url("fonts/baloo-2-latin.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- 1. Colors and sizes (change them here) ---------- */
+:root {
+  /* 60% - the main background */
+  --cream: #fff7ec;
+  /* 30% - cards, boxes and text */
+  --white: #ffffff;
+  --ink: #3d2f27;
+  --ink-soft: #7a685c;
+  --line: #f0e2d0;
+  /* 10% - the cheerful accent */
+  --accent: #ff7a45;
+  --accent-dark: #e85f2a;
+
+  --radius: 18px;
+  --shadow: 0 3px 0 var(--line), 0 6px 16px rgba(61, 47, 39, 0.08);
+  --font: "Baloo 2", "Nunito", "Comic Sans MS", system-ui, sans-serif;
+}
+
+/* ---------- 2. Page basics ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* Make taps feel right on phones and tablets */
+a,
+button {
+  touch-action: manipulation;          /* no zoom when tapping fast */
+  -webkit-tap-highlight-color: transparent; /* no gray flash on tap */
+  -webkit-touch-callout: none;         /* no pop-up menu on a long press */
+  user-select: none;                   /* don't select the text */
+}
+
+/* "Turn your phone" tip: only on phones held upright */
+.rotate-tip {
+  display: none;
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--ink-soft);
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* On small phones: thinner edges so the boxes get as big as possible */
+@media (max-width: 500px) {
+  main {
+    padding: 16px 8px 32px;
+  }
+}
+
+@media (max-width: 500px) and (orientation: portrait) {
+  .rotate-tip {
+    display: block;
+  }
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 0 0 24px;
+  color: var(--ink-soft);
+  font-size: 1.15rem;
+}
+
+/* ---------- 3. Top bar with tabs ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--white);
+  border-bottom: 3px solid var(--line);
+}
+
+.logo {
+  margin-right: 8px;
+  color: var(--ink);
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 8px 18px;
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+/* Hover effects only on devices with a mouse.
+   (On touch screens they get "stuck" after a tap.) */
+@media (hover: hover) {
+  .tab:hover {
+    background: var(--cream);
+  }
+}
+
+.tab.active {
+  background: var(--accent);
+  color: var(--white);
+}
+
+/* ---------- 4. Big friendly buttons ---------- */
+.big-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 52px;
+  min-height: 52px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 4px 0 var(--accent-dark);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+@media (hover: hover) {
+  .big-button:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Pressing the button pushes it down */
+.big-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--accent-dark);
+}
+
+/* The sound button in the top bar is round and quieter */
+.sound-button {
+  padding: 0;
+  font-size: 1.5rem;
+  background: var(--cream);
+  box-shadow: 0 4px 0 var(--line);
+}
+
+.sound-button:active {
+  box-shadow: 0 1px 0 var(--line);
+}
+
+/* Hold-to-press button (see hold.js): a darker color fills it from left to right */
+.hold-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; /* keeps the fill behind the text */
+}
+
+.hold-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s;
+}
+
+.hold-button.holding::after {
+  transform: scaleX(1);
+  transition: transform var(--hold-time, 0.8s) linear;
+}
+
+/* A little shake when it's only tapped, to say "hold me" */
+.hold-button.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* A clear ring when using the keyboard (Tab key) */
+a:focus-visible,
+button:focus-visible {
+  outline: 4px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ---------- 5. Game cards on the home page ---------- */
+.game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.game-card {
+  display: block;
+  padding: 24px;
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+
+@media (hover: hover) {
+  .game-card:hover {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+}
+
+.game-card .emoji {
+  font-size: 3rem;
+}
+
+.game-card h2 {
+  margin: 8px 0 4px;
+  font-size: 1.6rem;
+}
+
+.game-card p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+/* ---------- 6. Confetti (see confetti.js) ---------- */
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  pointer-events: none; /* taps go straight through */
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 16px;
+  border-radius: 3px;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
+
+/* Respect people who prefer less movement */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
